@@ -17,8 +17,8 @@ def pizza(request):
 def piz(request, piz_id):
     piz = Pizza.objects.get(id=piz_id)
 
-    toppings = piz.topping_set.all()
+    topping = piz.topping_set.all()
 
-    context = {'piz':piz, 'toppings':toppings}
+    context = {'piz':piz, 'topping':topping}
 
     return render(request, 'pizzas/piz.html', context)
