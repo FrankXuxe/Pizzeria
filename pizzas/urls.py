@@ -9,4 +9,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('pizza', views.pizza, name='pizza'),
     path('pizza/<int:piz_id>/', views.piz, name='piz'),
+    path('comment/', views.comment, name='comment'),
 ]

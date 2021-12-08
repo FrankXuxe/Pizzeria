@@ -1,6 +1,6 @@
-from django.shortcuts import render
-
-from . models import Pizza, Topping
+from django.shortcuts import render, redirect
+from .forms import TopicForm
+from .models import Pizza, Topping
 
 # Create your views here.
 def index(request):
@@ -22,3 +22,16 @@ def piz(request, piz_id):
     context = {'piz':piz, 'topping':topping}
 
     return render(request, 'pizzas/piz.html', context)
+
+def comment(request):
+    if request.method != 'POST':
+        form = TopicForm()
+    else:
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect('pizzas:pizza')
+
+    context = {'form':form}
+    return render(request, 'pizzas/comment.html', context)

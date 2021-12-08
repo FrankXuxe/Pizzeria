@@ -10,12 +10,14 @@
     {% for t in topping %}
     <li>
         <p>{{ t }}</p>
-        <p>{{ t.date_added }}</p>
+        <p>{{ t.date_added|date:'M d, H:i' }}</p>
     </li>
         {% empty %}
         <li> There are no toppings for this pizza yet. </li>
         {% endfor %}
   
 </ul>
+
+<a href="{% url 'pizzas:comment' %}">Add a new comment</a>
 
 {% endblock content %}
