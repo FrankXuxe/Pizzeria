@@ -19,3 +19,14 @@ class Topping(models.Model):
 
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+    piz = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+    name = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Comments'
+
+    def __str__(self):
+        return self.name

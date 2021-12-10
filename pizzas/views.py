@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TopicForm
+from .forms import TopicForm, EntryForm
 from .models import Pizza, Topping
 
 # Create your views here.
@@ -18,20 +18,25 @@ def piz(request, piz_id):
     piz = Pizza.objects.get(id=piz_id)
 
     topping = piz.topping_set.all()
+    comment = piz.comment_set.all()
 
-    context = {'piz':piz, 'topping':topping}
+    context = {'piz':piz, 'topping':topping, 'comment':comment}
 
     return render(request, 'pizzas/piz.html', context)
 
-def comment(request):
+def new_comment(request, piz_id):
+    piz = Pizza.objects.get(id=piz_id)
     if request.method != 'POST':
-        form = TopicForm()
+        form = EntryForm()
     else:
-        form = TopicForm(data=request.POST)
+        form = EntryForm(data = request.POST)
+
         if form.is_valid():
-            form.save()
+            new_comment = form.save(commit=False)
+            new_comment.piz = piz
+            new_comment.save()
 
-            return redirect('pizzas:pizza')
+            return redirect('pizzas:pizza', piz_id=piz_id)
 
-    context = {'form':form}
-    return render(request, 'pizzas/comment.html', context)
+    context = {'form':form, 'pizza':pizza}
+    return render(request, 'MainApp/new_comment.html', context)
