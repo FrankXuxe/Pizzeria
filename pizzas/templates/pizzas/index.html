@@ -1,9 +1,16 @@
 {% extends "pizzas/base.html" %}
+{% load static %}
+{% block page_header %}
 
-{% block content %}
+<div class="jumbotron">
+    <h1 class="display-3">Pizzeria</h1>
 
-<p>
-    WELCOME!!! Pizzeria helps you to see the topping for different types of pizzas!!!
-</p>
+    <p class="lead">Know the toppings for your favorite Pizza and make some comments!!!</p>
+    <a class="btn btn-lg btn-primary" href="{% url 'pizzas:pizza' %}"
+        role="button">Pizzas &raquo;</a>
+</div>
 
-{% endblock content %}
+<img src="{% static 'pizzas/Piz.jpg' %}" alt="Pizzeria" width="800" height="400">
+
+
+{% endblock page_header %}
