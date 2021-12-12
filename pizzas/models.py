@@ -30,3 +30,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+'''
+class image(models.Model):
+    title = models.ChartField(default="Default Title", max_length = 200)
+    picture = models.ImageField(default = meat "lover.jpg")
+'''

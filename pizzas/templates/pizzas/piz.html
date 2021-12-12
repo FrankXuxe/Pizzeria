@@ -26,6 +26,10 @@
 
     <img src="{% static 'pizzas/hawaiian.jpg' %}" alt="Pizzeria" width="700" height="350">
 
+    <p>
+        <a href="{% url 'pizzas:new_comment' piz.id %}">Add a new comment</a>
+    </p>
+
 
 {% for c in comment %}
 
@@ -40,10 +44,6 @@
     {% empty %}
         <p>There are no comments for this pizza yet.</p>
         {% endfor %}
-
-        <p>
-            <a href="{% url 'pizzas:new_comment' piz.id %}">Add a new comment</a>
-        </p>
 
 
 
