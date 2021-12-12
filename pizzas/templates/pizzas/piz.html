@@ -21,10 +21,13 @@
     {% empty %}
         {% endfor %}
 
-        
-    <img src="{% static 'pizzas/meat lover.jpg' %}" alt="Pizzeria" width="700" height="350">
 
-    <img src="{% static 'pizzas/hawaiian.jpg' %}" alt="Pizzeria" width="700" height="350">
+        <ul>
+            <li><h3>
+                <img src="{{ image.image.url }}" alt="Pizzeria" width="550" height="350">
+            </h3></li>
+        </ul>
+
 
     <p>
         <a href="{% url 'pizzas:new_comment' piz.id %}">Add a new comment</a>

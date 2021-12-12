@@ -1,5 +1,4 @@
 from django.urls import path
-from django.urls import path
 
 
 from . import views
@@ -12,4 +11,3 @@ urlpatterns = [
     path('pizza/<int:piz_id>/', views.piz, name='piz'),
     path('new_comment/<int:piz_id>/', views.new_comment, name='new_comment'),
 ]
-

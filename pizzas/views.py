@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import TopicForm, EntryForm
-from .models import Pizza, Topping
+from .models import Pizza, Topping, Image
 
 # Create your views here.
 def index(request):
@@ -19,8 +19,10 @@ def piz(request, piz_id):
 
     topping = piz.topping_set.all()
     comment = piz.comment_set.all()
+    image  = Image.objects.get(piz=piz)
+    print(image)
 
-    context = {'piz':piz, 'topping':topping, 'comment':comment}
+    context = {'piz':piz, 'topping':topping, 'comment':comment, 'image':image}
 
     return render(request, 'pizzas/piz.html', context)
 
@@ -40,3 +42,11 @@ def new_comment(request, piz_id):
 
     context = {'form':form, 'piz':piz}
     return render(request, 'pizzas/new_comment.html', context)
+
+
+
+'''
+    <img src="{% static 'pizzas/meat lover.jpg' %}" alt="Pizzeria" width="700" height="350">
+
+    <img src="{% static 'pizzas/hawaiian.jpg' %}" alt="Pizzeria" width="700" height="350">
+    '''
